@@ -1,0 +1,181 @@
+.relative {
+	position: relative;
+}
+.center {
+	text-align: center;
+}
+* {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	font-size: 18px;
+}
+
+body {
+	height: 100vh;
+	background-color: #17162e;
+}
+
+h1 {
+	text-align: center;
+	color: white;
+	margin: 3rem 0;
+	font-size: 36px;
+}
+
+/* === FORMULÁRIO INICIO === */
+
+form {
+	display: flex;
+	flex-direction: column;
+	width: 634px;
+	margin: auto;
+}
+
+form input[type="search"] {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: white;
+	border: none;
+	border-radius: 0.25rem;
+	width: 100%;
+	box-sizing: border-box;
+	display: inline-block;
+	padding: 1rem;
+}
+form input::placeholder {
+	color: #8a8a8a;
+}
+
+form svg {
+	position: absolute;
+	right: 24px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #8a8a8a;
+}
+
+form label {
+	margin-top: 1rem;
+	color: white;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	height: 16px;
+	cursor: pointer;
+	user-select: none;
+}
+
+form input[type="checkbox"] {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
+
+form label::before {
+	content: " ";
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 8px;
+	width: 16px;
+	height: 16px;
+	background-color: transparent;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #706ea8;
+	border-radius: 2px;
+	box-shadow: none;
+}
+form input[type="checkbox"]:checked + label::after {
+	content: " ";
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTczLjg5OCA0MzkuNDA0bC0xNjYuNC0xNjYuNGMtOS45OTctOS45OTctOS45OTctMjYuMjA2IDAtMzYuMjA0bDM2LjIwMy0zNi4yMDRjOS45OTctOS45OTggMjYuMjA3LTkuOTk4IDM2LjIwNCAwTDE5MiAzMTIuNjkgNDMyLjA5NSA3Mi41OTZjOS45OTctOS45OTcgMjYuMjA3LTkuOTk3IDM2LjIwNCAwbDM2LjIwMyAzNi4yMDRjOS45OTcgOS45OTcgOS45OTcgMjYuMjA2IDAgMzYuMjA0bC0yOTQuNCAyOTQuNDAxYy05Ljk5OCA5Ljk5Ny0yNi4yMDcgOS45OTctMzYuMjA0LS4wMDF6Ii8+PC9zdmc+);
+	background-repeat: no-repeat;
+	background-size: 12px 12px;
+	background-position: center center;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 0px;
+	left: 2px;
+	top: 0px;
+	text-align: center;
+	background-color: #706ea8;
+	font-size: 10px;
+	height: 16px;
+	width: 16px;
+}
+
+/* === FORMULÁRIO FIM === */
+
+/* === LISTA INICIO === */
+
+ul {
+	width: 1224px;
+	margin: 0 auto;
+	margin-top: 3rem;
+}
+
+li {
+	background-color: #1d1c3b;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 32.8387px 24.5482px 79px rgba(0, 0, 0, 0.15), 23.8851px 17.855px 53.2479px rgba(0, 0, 0, 0.121406),
+		16.6246px 12.4276px 34.4391px rgba(0, 0, 0, 0.10125), 10.9035px 8.15079px 21.3701px rgba(0, 0, 0, 0.0867188),
+		6.56775px 4.90965px 12.8375px rgba(0, 0, 0, 0.075), 3.46346px 2.58907px 7.6377px rgba(0, 0, 0, 0.0632813),
+		1.4367px 1.07399px 4.56719px rgba(0, 0, 0, 0.04875), 0.333519px 0.249318px 2.42246px rgba(0, 0, 0, 0.0285938);
+	border-radius: 8px;
+	padding: 2rem;
+	margin-bottom: 3rem;
+}
+
+img {
+	border-radius: 50%;
+}
+
+.movie-title {
+	color: white;
+	font-size: 18px;
+	line-height: 22px;
+	max-width: 268px;
+	display: block;
+}
+
+.rating-favorite-container {
+	display: flex;
+	margin-top: 1.25rem;
+}
+
+.rating {
+	color: white;
+	margin-right: 3rem;
+	display: flex;
+	align-items: center;
+}
+.rating svg {
+	margin-right: 0.5rem;
+}
+.favorite {
+	color: white;
+	display: flex;
+	align-items: center;
+}
+.favorite svg {
+	color: #ba0707;
+	margin-right: 0.5rem;
+}
+
+p {
+	color: #acacac;
+	max-width: 590px;
+	font-size: 18px;
+	line-height: 32px;
+}
+
+/* === LISTA FIM === */
