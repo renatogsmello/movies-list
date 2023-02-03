@@ -137,6 +137,13 @@ li {
 
 img {
 	border-radius: 50%;
+	width: 140px;
+	height: 140px;
+	object-fit: cover;
+}
+
+.movie-data {
+	width: 268px;
 }
 
 .movie-title {
