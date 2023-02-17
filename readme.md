@@ -10,3 +10,7 @@ Criar o formulário de busca e a lista de resultados com resultados fixos em HTM
 ### Dia 2
 
 Criar a lista de forma dinâmica com javascript
+
+### Dia 3
+
+Consumir os dados da API The Movies Database API e mostra-los na tela
