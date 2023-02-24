@@ -14,3 +14,7 @@ Criar a lista de forma dinâmica com javascript
 ### Dia 3
 
 Consumir os dados da API The Movies Database API e mostra-los na tela
+
+### Dia 4
+
+Usar a busca da API para retornar os filmes relacionado a palavra chave

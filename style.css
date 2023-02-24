@@ -111,6 +111,10 @@ form input[type="checkbox"]:checked + label::after {
 	width: 16px;
 }
 
+#search-icon {
+	cursor: pointer;
+}
+
 /* === FORMULÁRIO FIM === */
 
 /* === LISTA INICIO === */

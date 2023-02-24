@@ -1,5 +1,8 @@
 import { apiKey } from "./env.js"
 
+const searchIcon = document.getElementById("search-icon")
+const input = document.getElementById("search")
+
 async function getMoviesAPI() {
 	await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`)
 		.then((result) => {
@@ -8,6 +11,22 @@ async function getMoviesAPI() {
 		.then((data) => {
 			console.log(data)
 			const movies = data.results
+			let movieList = document.getElementById("movie-list")
+			movieList.innerHTML = ""
+			movies.map((movie) => {
+				renderMovie(movie)
+			})
+		})
+}
+async function searchMovie(param) {
+	await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${param}`)
+		.then((result) => {
+			return result.json()
+		})
+		.then((data) => {
+			const movies = data.results
+			let movieList = document.getElementById("movie-list")
+			movieList.innerHTML = ""
 			movies.map((movie) => {
 				renderMovie(movie)
 			})
@@ -19,6 +38,7 @@ function renderMovie({ poster_path, title, release_date, vote_average, overview,
 	let year = release_date.slice(0, 4)
 	isFavorited = false
 	let movieList = document.getElementById("movie-list")
+
 	let item = document.createElement("li")
 	let template = `
     <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="" />
@@ -54,3 +74,14 @@ function renderMovie({ poster_path, title, release_date, vote_average, overview,
 	item.innerHTML = template
 	movieList.appendChild(item)
 }
+
+searchIcon.addEventListener("click", (e) => {
+	searchMovie(input.value)
+})
+
+input.addEventListener("keypress", (e) => {
+	if (e.key === "Enter") {
+		e.preventDefault()
+		searchMovie(input.value)
+	}
+})
