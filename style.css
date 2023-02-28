@@ -170,17 +170,22 @@ img {
 	display: flex;
 	align-items: center;
 }
-.rating svg {
+.rating img {
 	margin-right: 0.5rem;
+	width: 24px;
+	height: 24px;
 }
 .favorite {
 	color: white;
 	display: flex;
 	align-items: center;
 }
-.favorite svg {
+.favorite img {
 	color: #ba0707;
 	margin-right: 0.5rem;
+	cursor: pointer;
+	width: 24px;
+	height: auto;
 }
 
 p {

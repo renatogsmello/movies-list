@@ -18,3 +18,7 @@ Consumir os dados da API The Movies Database API e mostra-los na tela
 ### Dia 4
 
 Usar a busca da API para retornar os filmes relacionado a palavra chave
+
+### Dia 5
+
+Salvar e remover itens dos favoritos usando o localstorage
