@@ -22,3 +22,7 @@ Usar a busca da API para retornar os filmes relacionado a palavra chave
 ### Dia 5
 
 Salvar e remover itens dos favoritos usando o localstorage
+
+### Dia 6
+
+Mostrar apenas os favoritos quando clicar no checkbox

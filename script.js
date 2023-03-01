@@ -2,6 +2,20 @@ import { apiKey } from "./env.js"
 
 const searchIcon = document.getElementById("search-icon")
 const input = document.getElementById("search")
+const favoritesOnlyCheck = document.querySelector("#favorites-only")
+
+favoritesOnlyCheck.addEventListener("click", (e) => {
+	if (e.target.checked) {
+		const movies = getMoviesFromLocalStorage()
+		console.log(movies)
+		cleanList()
+		movies.map((movie) => {
+			renderMovie(movie)
+		})
+	} else {
+		getMoviesAPI()
+	}
+})
 
 async function getMoviesAPI() {
 	await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`)
@@ -25,8 +39,7 @@ async function searchMovie(title) {
 		})
 		.then((data) => {
 			const movies = data.results
-			let movieList = document.getElementById("movie-list")
-			movieList.innerHTML = ""
+			cleanList()
 			movies.map((movie) => {
 				renderMovie(movie)
 			})
@@ -34,10 +47,16 @@ async function searchMovie(title) {
 }
 getMoviesAPI()
 
+function checkMovieIsFavorited(id) {
+	const movies = getMoviesFromLocalStorage() || []
+	return movies.find((movie) => movie.id == id)
+}
+
 function renderMovie(movie) {
 	const { id, poster_path, title, release_date, vote_average, overview } = movie
 	let year = release_date.slice(0, 4)
-	movie.isFavorited = false
+	const isFavorited = checkMovieIsFavorited(id)
+	console.log(isFavorited)
 	let movieList = document.getElementById("movie-list")
 
 	let item = document.createElement("li")
@@ -75,17 +94,17 @@ function renderMovie(movie) {
 	favorite.classList.add("favorite")
 	ratingFaforiteContainer.appendChild(favorite)
 	let favoriteIcon = document.createElement("img")
-	favoriteIcon.src = movie.isFavorited ? "./images/heart-solid.svg" : "./images/heart-outline.svg"
+	favoriteIcon.src = isFavorited ? "./images/heart-solid.svg" : "./images/heart-outline.svg"
 	favorite.appendChild(favoriteIcon)
 	favorite.insertAdjacentText("beforeend", "Favoritar")
 	favoriteIcon.addEventListener("click", () => {
-		if (movie.isFavorited) {
+		if (isFavorited) {
 			favoriteIcon.src = "./images/heart-outline.svg"
-			movie.isFavorited = false
+
 			removeFromLocalStorage(movie)
 		} else {
 			favoriteIcon.src = "./images/heart-solid.svg"
-			movie.isFavorited = true
+
 			saveToLocalStorage(movie)
 		}
 	})
@@ -98,6 +117,10 @@ function renderMovie(movie) {
 	movieList.appendChild(item)
 }
 
+function cleanList() {
+	let movieList = document.getElementById("movie-list")
+	movieList.innerHTML = ""
+}
 searchIcon.addEventListener("click", (e) => {
 	searchMovie(input.value)
 })
@@ -110,7 +133,7 @@ input.addEventListener("keypress", (e) => {
 })
 
 function saveToLocalStorage(movie) {
-	const movies = JSON.parse(localStorage.getItem("movies")) || []
+	const movies = getMoviesFromLocalStorage() || []
 
 	movies.push(movie)
 
@@ -119,9 +142,14 @@ function saveToLocalStorage(movie) {
 }
 
 function removeFromLocalStorage(movie) {
-	const movies = JSON.parse(localStorage.getItem("movies")) || []
+	const movies = getMoviesFromLocalStorage() || []
+	getMoviesFromLocalStorage()
 	let findMovie = movies.find((m) => m.id == movie.id)
 	let newMovies = movies.filter((m) => m.id !== findMovie.id)
 	const moviesJSON = JSON.stringify(newMovies)
 	localStorage.setItem("movies", moviesJSON)
+}
+
+function getMoviesFromLocalStorage() {
+	return JSON.parse(localStorage.getItem("movies")) || []
 }
