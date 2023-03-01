@@ -2,12 +2,13 @@ import { apiKey } from "./env.js"
 
 const searchIcon = document.getElementById("search-icon")
 const input = document.getElementById("search")
-const favoritesOnlyCheck = document.querySelector("#favorites-only")
 
+// Mostra apenas os itens favoritados
+const favoritesOnlyCheck = document.querySelector("#favorites-only")
 favoritesOnlyCheck.addEventListener("click", (e) => {
 	if (e.target.checked) {
 		const movies = getMoviesFromLocalStorage()
-		console.log(movies)
+
 		cleanList()
 		movies.map((movie) => {
 			renderMovie(movie)
@@ -23,7 +24,6 @@ async function getMoviesAPI() {
 			return result.json()
 		})
 		.then((data) => {
-			// console.log(data)
 			const movies = data.results
 			let movieList = document.getElementById("movie-list")
 			movieList.innerHTML = ""
@@ -45,6 +45,7 @@ async function searchMovie(title) {
 			})
 		})
 }
+
 getMoviesAPI()
 
 function checkMovieIsFavorited(id) {
@@ -56,7 +57,7 @@ function renderMovie(movie) {
 	const { id, poster_path, title, release_date, vote_average, overview } = movie
 	let year = release_date.slice(0, 4)
 	const isFavorited = checkMovieIsFavorited(id)
-	console.log(isFavorited)
+
 	let movieList = document.getElementById("movie-list")
 
 	let item = document.createElement("li")
@@ -117,6 +118,7 @@ function renderMovie(movie) {
 	movieList.appendChild(item)
 }
 
+// Limpa a lista de Filmes
 function cleanList() {
 	let movieList = document.getElementById("movie-list")
 	movieList.innerHTML = ""
@@ -134,16 +136,13 @@ input.addEventListener("keypress", (e) => {
 
 function saveToLocalStorage(movie) {
 	const movies = getMoviesFromLocalStorage() || []
-
 	movies.push(movie)
-
 	const moviesJSON = JSON.stringify(movies)
 	localStorage.setItem("movies", moviesJSON)
 }
 
 function removeFromLocalStorage(movie) {
 	const movies = getMoviesFromLocalStorage() || []
-	getMoviesFromLocalStorage()
 	let findMovie = movies.find((m) => m.id == movie.id)
 	let newMovies = movies.filter((m) => m.id !== findMovie.id)
 	const moviesJSON = JSON.stringify(newMovies)

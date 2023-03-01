@@ -26,3 +26,7 @@ Salvar e remover itens dos favoritos usando o localstorage
 ### Dia 6
 
 Mostrar apenas os favoritos quando clicar no checkbox
+
+### Dia 7
+
+Refatorando, documentando
