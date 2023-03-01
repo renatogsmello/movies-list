@@ -1,4 +1,5 @@
-import { apiKey } from "./env.js"
+//import { apiKey } from "./env.js"
+const apiKey = "2c597417bc4383c574260b68c15a3e61"
 
 const searchIcon = document.getElementById("search-icon")
 const input = document.getElementById("search")
